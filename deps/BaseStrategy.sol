@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.11;
+pragma solidity ^0.7.0;
 
-import "./@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol";
-import "./@openzeppelin/contracts-upgradeable/math/SafeMathUpgradeable.sol";
-import "./@openzeppelin/contracts-upgradeable/math/MathUpgradeable.sol";
-import "./@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol";
-import "./@openzeppelin/contracts-upgradeable/utils/PausableUpgradeable.sol";
-import "./@openzeppelin/contracts-upgradeable/token/ERC20/SafeERC20Upgradeable.sol";
-import "./@openzeppelin/contracts-upgradeable/proxy/Initializable.sol";
+import "@openzeppelin-upgradeable/contracts/token/ERC20/IERC20Upgradeable.sol";
+import "@openzeppelin-upgradeable/contracts/math/SafeMathUpgradeable.sol";
+import "@openzeppelin-upgradeable/contracts/math/MathUpgradeable.sol";
+import "@openzeppelin-upgradeable/contracts/utils/AddressUpgradeable.sol";
+import "@openzeppelin-upgradeable/contracts/utils/PausableUpgradeable.sol";
+import "@openzeppelin-upgradeable/contracts/token/ERC20/SafeERC20Upgradeable.sol";
+import "@openzeppelin-upgradeable/contracts/proxy/Initializable.sol";
 import "../interfaces/uniswap/IUniswapRouterV2.sol";
 import "../interfaces/badger/IController.sol";
 import "../interfaces/badger/IStrategy.sol";
@@ -192,8 +192,9 @@ abstract contract BaseStrategy is PausableUpgradeable, SettAccessControl {
 
         // Withdraw from strategy positions, typically taking from any idle want first.
         _withdrawSome(_amount);
-        uint256 _postWithdraw =
-            IERC20Upgradeable(want).balanceOf(address(this));
+        uint256 _postWithdraw = IERC20Upgradeable(want).balanceOf(
+            address(this)
+        );
 
         // Sanity check: Ensure we were able to retrieve sufficent want from strategy positions
         // If we end up with less than the amount requested, make sure it does not deviate beyond a maximum threshold
@@ -307,7 +308,7 @@ abstract contract BaseStrategy is PausableUpgradeable, SettAccessControl {
             0,
             path,
             address(this),
-            now
+            block.timestamp
         );
     }
 
@@ -316,7 +317,7 @@ abstract contract BaseStrategy is PausableUpgradeable, SettAccessControl {
             0,
             path,
             address(this),
-            now
+            block.timestamp
         );
     }
 
@@ -331,7 +332,7 @@ abstract contract BaseStrategy is PausableUpgradeable, SettAccessControl {
             0,
             path,
             address(this),
-            now
+            block.timestamp
         );
     }
 
@@ -340,10 +341,12 @@ abstract contract BaseStrategy is PausableUpgradeable, SettAccessControl {
         internal
         virtual
     {
-        uint256 _token0Balance =
-            IERC20Upgradeable(token0).balanceOf(address(this));
-        uint256 _token1Balance =
-            IERC20Upgradeable(token1).balanceOf(address(this));
+        uint256 _token0Balance = IERC20Upgradeable(token0).balanceOf(
+            address(this)
+        );
+        uint256 _token1Balance = IERC20Upgradeable(token1).balanceOf(
+            address(this)
+        );
 
         _safeApproveHelper(token0, uniswap, _token0Balance);
         _safeApproveHelper(token1, uniswap, _token1Balance);

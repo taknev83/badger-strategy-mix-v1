@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.11;
+pragma solidity ^0.7.0;
 
-import "../../deps/@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol";
-import "../../deps/@openzeppelin/contracts-upgradeable/math/SafeMathUpgradeable.sol";
-import "../../deps/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol";
-import "../../deps/@openzeppelin/contracts-upgradeable/token/ERC20/SafeERC20Upgradeable.sol";
-import "../../deps/@openzeppelin/contracts-upgradeable/proxy/Initializable.sol";
+import "@openzeppelin-upgradeable/contracts/token/ERC20/IERC20Upgradeable.sol";
+import "@openzeppelin-upgradeable/contracts/math/SafeMathUpgradeable.sol";
+import "@openzeppelin-upgradeable/contracts/utils/AddressUpgradeable.sol";
+import "@openzeppelin-upgradeable/contracts/token/ERC20/SafeERC20Upgradeable.sol";
+import "@openzeppelin-upgradeable/contracts/proxy/Initializable.sol";
 
 import "interfaces/badger/IConverter.sol";
 import "interfaces/badger/IOneSplitAudit.sol";

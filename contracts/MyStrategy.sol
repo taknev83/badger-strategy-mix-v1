@@ -1,15 +1,19 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.6.11;
+pragma solidity ^0.7.0;
 pragma experimental ABIEncoderV2;
 
-import "../deps/@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol";
-import "../deps/@openzeppelin/contracts-upgradeable/math/SafeMathUpgradeable.sol";
-import "../deps/@openzeppelin/contracts-upgradeable/math/MathUpgradeable.sol";
-import "../deps/@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol";
-import "../deps/@openzeppelin/contracts-upgradeable/token/ERC20/SafeERC20Upgradeable.sol";
+import "@openzeppelin-upgradeable/contracts/token/ERC20/IERC20Upgradeable.sol";
+import "@openzeppelin-upgradeable/contracts/math/SafeMathUpgradeable.sol";
+import "@openzeppelin-upgradeable/contracts/math/MathUpgradeable.sol";
+import "@openzeppelin-upgradeable/contracts/utils/AddressUpgradeable.sol";
+import "@openzeppelin-upgradeable/contracts/token/ERC20/SafeERC20Upgradeable.sol";
+import "@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol";
+import "@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol";
 
 import "../interfaces/badger/IController.sol";
+
+
 
 import {BaseStrategy} from "../deps/BaseStrategy.sol";
 
@@ -134,12 +138,15 @@ contract MyStrategy is BaseStrategy {
 
         // Write your code here
 
-        uint256 earned =
-            IERC20Upgradeable(want).balanceOf(address(this)).sub(_before);
+        uint256 earned = IERC20Upgradeable(want).balanceOf(address(this)).sub(
+            _before
+        );
 
         /// @notice Keep this in so you get paid!
-        (uint256 governancePerformanceFee, uint256 strategistPerformanceFee) =
-            _processRewardsFees(earned, want);
+        (
+            uint256 governancePerformanceFee,
+            uint256 strategistPerformanceFee
+        ) = _processRewardsFees(earned, want);
 
         // TODO: If you are harvesting a reward token you're not compounding
         // You probably still want to capture fees for it

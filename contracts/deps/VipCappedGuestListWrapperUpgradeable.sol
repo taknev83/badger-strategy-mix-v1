@@ -1,10 +1,11 @@
 // SPDX-License-Identifier: GPL-3.0
-pragma solidity >=0.6.0 <0.7.0;
+pragma solidity ^0.7.0;
+
 pragma experimental ABIEncoderV2;
 
-import "../../deps/@openzeppelin/contracts-upgradeable/math/SafeMathUpgradeable.sol";
-import "../../deps/@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import "../../deps/@openzeppelin/contracts-upgradeable/cryptography/MerkleProofUpgradeable.sol";
+import "@openzeppelin-upgradeable/contracts/math/SafeMathUpgradeable.sol";
+import "@openzeppelin-upgradeable/contracts/access/OwnableUpgradeable.sol";
+import "@openzeppelin-upgradeable/contracts/cryptography/MerkleProofUpgradeable.sol";
 import "interfaces/yearn/GuestlistApi.sol";
 import "interfaces/yearn/BadgerWrapperApi.sol";
 

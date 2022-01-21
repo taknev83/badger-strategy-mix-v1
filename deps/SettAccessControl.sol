@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.6.11;
+pragma solidity ^0.7.0;
 
-import "./@openzeppelin/contracts-upgradeable/proxy/Initializable.sol";
+import "@openzeppelin-upgradeable/contracts/proxy/Initializable.sol";
 
 /*
     Common base for permissioned roles throughout Sett ecosystem
